@@ -1,0 +1,472 @@
+{
+  "onboarding_data": {
+    "step_1_personal_info": {
+      "description": "Personal information and basic details about the user",
+      "required_fields": ["fullName", "age", "location", "currentRole"],
+      "fields": {
+        "fullName": {
+          "type": "string",
+          "description": "User's full name",
+          "validation": "required, min 2 characters",
+          "input_type": "text",
+          "placeholder": "John Doe",
+          "sample_value": "John Smith"
+        },
+        "age": {
+          "type": "string",
+          "description": "User's age range",
+          "validation": "required, predefined options",
+          "input_type": "select",
+          "options": [
+            "18-22",
+            "23-27",
+            "28-32",
+            "33-37",
+            "38-42",
+            "43-47",
+            "48-52",
+            "53+"
+          ],
+          "sample_value": "28-32"
+        },
+        "location": {
+          "type": "string",
+          "description": "User's current location",
+          "validation": "required, min 2 characters",
+          "input_type": "text",
+          "placeholder": "City, Country",
+          "sample_value": "New York, USA"
+        },
+        "currentRole": {
+          "type": "string",
+          "description": "User's current professional status or role",
+          "validation": "required, predefined options",
+          "input_type": "select",
+          "options": [
+            "student",
+            "recent-graduate",
+            "entry-level",
+            "mid-level",
+            "senior-level",
+            "manager",
+            "director",
+            "executive",
+            "freelancer",
+            "entrepreneur",
+            "unemployed",
+            "career-change"
+          ],
+          "sample_value": "mid-level"
+        }
+      }
+    },
+
+    "step_2_education": {
+      "description": "Educational background and qualifications",
+      "required_fields": ["education", "fieldOfStudy"],
+      "optional_fields": ["graduationYear", "certifications"],
+      "fields": {
+        "education": {
+          "type": "string",
+          "description": "Highest level of education completed",
+          "validation": "required, predefined options",
+          "input_type": "select",
+          "options": [
+            "high-school",
+            "associate",
+            "bachelor",
+            "master",
+            "phd",
+            "bootcamp",
+            "certification",
+            "self-taught",
+            "other"
+          ],
+          "sample_value": "bachelor"
+        },
+        "fieldOfStudy": {
+          "type": "string",
+          "description": "Primary field of study or specialization",
+          "validation": "required, min 2 characters",
+          "input_type": "text",
+          "placeholder": "Computer Science",
+          "sample_value": "Computer Science"
+        },
+        "graduationYear": {
+          "type": "string",
+          "description": "Year of graduation",
+          "validation": "optional, year format",
+          "input_type": "select",
+          "options": "Generated dynamically from 1970 to current year",
+          "sample_value": "2018"
+        },
+        "certifications": {
+          "type": "array",
+          "description": "List of professional certifications earned",
+          "validation": "optional, dynamic array",
+          "input_type": "dynamic_tags",
+          "sample_value": [
+            "AWS Certified Developer",
+            "Google Cloud Professional",
+            "Scrum Master Certified"
+          ]
+        }
+      }
+    },
+
+    "step_3_experience": {
+      "description": "Work experience and professional background",
+      "required_fields": ["experienceLevel"],
+      "optional_fields": ["previousRoles"],
+      "fields": {
+        "experienceLevel": {
+          "type": "string",
+          "description": "Overall experience level in the field",
+          "validation": "required, predefined options",
+          "input_type": "select",
+          "options": [
+            "entry-level",
+            "1-2-years",
+            "3-5-years",
+            "6-10-years",
+            "10+-years"
+          ],
+          "sample_value": "3-5-years"
+        },
+        "previousRoles": {
+          "type": "array",
+          "description": "List of previous work positions",
+          "validation": "optional, complex array objects",
+          "input_type": "dynamic_complex_form",
+          "structure": {
+            "title": {
+              "type": "string",
+              "description": "Job title",
+              "validation": "required for each role"
+            },
+            "company": {
+              "type": "string",
+              "description": "Company name",
+              "validation": "required for each role"
+            },
+            "duration": {
+              "type": "string",
+              "description": "Employment duration (auto-generated from date inputs)",
+              "validation": "generated from startMonth, startYear, endMonth, endYear, isPresent",
+              "format": "Month Year - Month Year OR Month Year - Present"
+            },
+            "description": {
+              "type": "string",
+              "description": "Role description and responsibilities",
+              "validation": "optional"
+            }
+          },
+          "sample_value": [
+            {
+              "title": "Software Developer",
+              "company": "Tech Corp Inc",
+              "duration": "January 2020 - Present",
+              "description": "Developed web applications using React and Node.js"
+            },
+            {
+              "title": "Junior Developer",
+              "company": "StartupXYZ",
+              "duration": "June 2018 - December 2019",
+              "description": "Built mobile applications and worked on frontend development"
+            }
+          ]
+        }
+      }
+    },
+
+    "step_4_skills": {
+      "description": "Technical and soft skills assessment",
+      "required_fields": [],
+      "optional_fields": ["technicalSkills", "softSkills", "skillsToImprove"],
+      "fields": {
+        "technicalSkills": {
+          "type": "array",
+          "description": "Technical skills and technologies",
+          "validation": "optional, dynamic array with predefined popular options",
+          "input_type": "dynamic_tags_with_suggestions",
+          "popular_suggestions": [
+            "JavaScript",
+            "Python",
+            "Java",
+            "React",
+            "Node.js",
+            "SQL",
+            "HTML/CSS",
+            "Git",
+            "AWS",
+            "Docker",
+            "TypeScript",
+            "MongoDB",
+            "PostgreSQL",
+            "REST APIs",
+            "GraphQL",
+            "Machine Learning",
+            "Data Analysis",
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Photoshop",
+            "Figma",
+            "Adobe Creative Suite",
+            "WordPress",
+            "Salesforce"
+          ],
+          "sample_value": [
+            "JavaScript",
+            "React",
+            "Node.js",
+            "Python",
+            "AWS",
+            "MongoDB"
+          ]
+        },
+        "softSkills": {
+          "type": "array",
+          "description": "Soft skills and personal qualities",
+          "validation": "optional, dynamic array with predefined popular options",
+          "input_type": "dynamic_tags_with_suggestions",
+          "popular_suggestions": [
+            "Communication",
+            "Leadership",
+            "Problem Solving",
+            "Teamwork",
+            "Time Management",
+            "Critical Thinking",
+            "Adaptability",
+            "Creativity",
+            "Project Management",
+            "Public Speaking",
+            "Negotiation",
+            "Customer Service",
+            "Analytical Thinking",
+            "Attention to Detail",
+            "Conflict Resolution",
+            "Emotional Intelligence",
+            "Decision Making",
+            "Mentoring"
+          ],
+          "sample_value": [
+            "Communication",
+            "Problem Solving",
+            "Teamwork",
+            "Leadership",
+            "Time Management"
+          ]
+        },
+        "skillsToImprove": {
+          "type": "array",
+          "description": "Skills the user wants to develop or improve",
+          "validation": "optional, dynamic array",
+          "input_type": "dynamic_tags",
+          "sample_value": [
+            "Machine Learning",
+            "Public Speaking",
+            "Docker",
+            "GraphQL"
+          ]
+        }
+      }
+    },
+
+    "step_5_goals": {
+      "description": "Career goals and aspirations",
+      "required_fields": ["careerGoals", "timeframe"],
+      "optional_fields": ["preferredIndustries", "workPreference"],
+      "fields": {
+        "careerGoals": {
+          "type": "array",
+          "description": "User's career objectives and aspirations",
+          "validation": "required, at least one goal must be selected",
+          "input_type": "multi_select_buttons",
+          "options": [
+            "Get promoted in current role",
+            "Switch to a new career field",
+            "Start my own business",
+            "Become a team leader/manager",
+            "Increase my salary",
+            "Work remotely",
+            "Learn new technologies",
+            "Get certified in my field",
+            "Find a better work-life balance",
+            "Move to a bigger company",
+            "Work for a startup",
+            "Become a consultant/freelancer"
+          ],
+          "sample_value": [
+            "Get promoted in current role",
+            "Learn new technologies",
+            "Increase my salary"
+          ]
+        },
+        "timeframe": {
+          "type": "string",
+          "description": "Timeline for achieving career goals",
+          "validation": "required, predefined options",
+          "input_type": "select",
+          "options": [
+            "3-months",
+            "6-months",
+            "1-year",
+            "2-years",
+            "3-5-years",
+            "5+-years"
+          ],
+          "sample_value": "1-year"
+        },
+        "preferredIndustries": {
+          "type": "array",
+          "description": "Industries the user is interested in working in",
+          "validation": "optional, multiple selection allowed",
+          "input_type": "multi_select_buttons",
+          "options": [
+            "Technology",
+            "Healthcare",
+            "Finance",
+            "Education",
+            "Marketing",
+            "Sales",
+            "Human Resources",
+            "Manufacturing",
+            "Retail",
+            "Consulting",
+            "Non-profit",
+            "Government",
+            "Media",
+            "Real Estate",
+            "Transportation",
+            "Energy",
+            "Agriculture",
+            "Entertainment",
+            "Legal",
+            "Other"
+          ],
+          "sample_value": ["Technology", "Finance"]
+        },
+        "workPreference": {
+          "type": "string",
+          "description": "Preferred work arrangement",
+          "validation": "optional, predefined options",
+          "input_type": "select",
+          "options": [
+            "remote",
+            "hybrid",
+            "office",
+            "flexible",
+            "no-preference"
+          ],
+          "sample_value": "hybrid"
+        }
+      }
+    },
+
+    "step_6_completion": {
+      "description": "Final step - data submission and completion",
+      "fields": {
+        "submission": {
+          "type": "action",
+          "description": "Submits all collected data to the backend API",
+          "api_endpoint": "http://localhost:7102/api/UserProfile",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer {token}"
+          },
+          "success_action": "Redirect to dashboard or chat interface",
+          "error_handling": "Display error message and allow retry"
+        }
+      }
+    }
+  },
+
+  "complete_sample_payload": {
+    "fullName": "John Smith",
+    "age": "28-32",
+    "location": "New York, USA",
+    "currentRole": "mid-level",
+    "education": "bachelor",
+    "fieldOfStudy": "Computer Science",
+    "graduationYear": "2018",
+    "certifications": [
+      "AWS Certified Developer",
+      "Google Cloud Professional",
+      "Scrum Master Certified"
+    ],
+    "experienceLevel": "3-5-years",
+    "previousRoles": [
+      {
+        "title": "Software Developer",
+        "company": "Tech Corp Inc",
+        "duration": "January 2020 - Present",
+        "description": "Developed web applications using React and Node.js"
+      },
+      {
+        "title": "Junior Developer",
+        "company": "StartupXYZ",
+        "duration": "June 2018 - December 2019",
+        "description": "Built mobile applications and worked on frontend development"
+      }
+    ],
+    "technicalSkills": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Python",
+      "AWS",
+      "MongoDB"
+    ],
+    "softSkills": [
+      "Communication",
+      "Problem Solving",
+      "Teamwork",
+      "Leadership",
+      "Time Management"
+    ],
+    "skillsToImprove": [
+      "Machine Learning",
+      "Public Speaking",
+      "Docker",
+      "GraphQL"
+    ],
+    "careerGoals": [
+      "Get promoted in current role",
+      "Learn new technologies",
+      "Increase my salary"
+    ],
+    "timeframe": "1-year",
+    "preferredIndustries": ["Technology", "Finance"],
+    "workPreference": "hybrid"
+  },
+
+  "api_integration": {
+    "endpoint": "http://localhost:7102/api/UserProfile",
+    "method": "POST",
+    "authentication": "Bearer token from localStorage",
+    "validation": {
+      "frontend": "Real-time validation on each step",
+      "backend": "Server-side validation before saving"
+    },
+    "error_handling": {
+      "network_errors": "Display retry option",
+      "validation_errors": "Show specific field errors",
+      "server_errors": "Display generic error message"
+    },
+    "success_flow": "Redirect to dashboard or start chat with Mr. James"
+  },
+
+  "ui_components": {
+    "OnboardingForm": "Main container component managing state and navigation",
+    "StepIndicator": "Shows progress through the 6 steps",
+    "OnboardingStep": "Wrapper component with animation transitions",
+    "PersonalInfoStep": "Collects personal information",
+    "EducationStep": "Collects educational background",
+    "ExperienceStep": "Collects work experience with complex role management",
+    "SkillsStep": "Manages technical/soft skills with popular suggestions",
+    "GoalsStep": "Collects career goals and preferences",
+    "CompletionStep": "Final submission and success confirmation"
+  }
+}

@@ -5,6 +5,8 @@ import {
   Heading,
   Stack,
   Text,
+  Box,
+  Image,
 } from "@chakra-ui/react";
 
 interface AuthLayoutProps {
@@ -23,27 +25,54 @@ export function AuthLayout({
   footer,
 }: AuthLayoutProps) {
   return (
-    <Container maxW="lg" py={{ base: "12", md: "16" }}>
-      <Stack gap="6">
-        <Stack gap="2" textAlign="center">
-          <Badge
-            alignSelf="center"
-            colorScheme="blue"
-            variant="subtle"
-            borderRadius="full"
-            px="3"
-            py="1"
-          >
-            {badge}
-          </Badge>
-          <Heading size="xl">{title}</Heading>
-          <Text color="fg.muted">{subtitle}</Text>
+    <Box
+      minH="100vh"
+      bgGradient="linear(to-b, blue.50, white)"
+      display="flex"
+      alignItems="center"
+      py={{ base: "8", md: "12" }}
+    >
+      <Container maxW="lg" w="100%">
+        <Stack gap="8">
+          {/* Logo */}
+          <Box textAlign="center" mb="2">
+            <Image
+              src="/images/logo.png"
+              alt="SkillSync Logo"
+              height={{ base: "48px", md: "56px" }}
+              mx="auto"
+              mb="4"
+            />
+            <Heading size="lg" color="blue.600" fontWeight="bold">
+              SkillSync
+            </Heading>
+          </Box>
+
+          <Stack gap="6">
+            <Stack gap="2" textAlign="center">
+              {badge && (
+                <Badge
+                  alignSelf="center"
+                  colorScheme="blue"
+                  variant="subtle"
+                  borderRadius="full"
+                  px="3"
+                  py="1"
+                  fontSize="xs"
+                >
+                  {badge}
+                </Badge>
+              )}
+              <Heading size="xl" fontWeight="bold">{title}</Heading>
+              <Text color="fg.muted" fontSize="md">{subtitle}</Text>
+            </Stack>
+            <Card.Root shadow="xl" borderWidth="1px" borderColor="gray.100">
+              <Card.Body p={{ base: "6", md: "8" }}>{children}</Card.Body>
+            </Card.Root>
+            {footer}
+          </Stack>
         </Stack>
-        <Card.Root shadow="lg" borderWidth="1px">
-          <Card.Body>{children}</Card.Body>
-        </Card.Root>
-        {footer}
-      </Stack>
-    </Container>
+      </Container>
+    </Box>
   );
 }

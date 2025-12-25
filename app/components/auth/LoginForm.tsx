@@ -44,7 +44,7 @@ export function LoginForm() {
         title: "Signed in",
         description: `Welcome back${result.user.full_name ? `, ${result.user.full_name}` : ""}!`,
       });
-      navigate("/dashboard");
+      navigate("/onboarding");
     } catch (error) {
       notifyError(error, "Unable to log in");
     } finally {

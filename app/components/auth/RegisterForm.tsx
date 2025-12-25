@@ -53,7 +53,7 @@ export function RegisterForm() {
         title: "Account created",
         description: `Welcome aboard, ${result.user.full_name || result.user.email}!`,
       });
-      navigate("/dashboard");
+      navigate("/onboarding");
     } catch (error) {
       notifyError(error, "Unable to register");
     } finally {

@@ -1,215 +1,313 @@
 import { useColorModeValue } from "@/components/ui/color-mode";
-import { toaster } from "@/components/ui/toaster";
 import {
   Badge,
   Box,
   Button,
   Card,
-  Code,
   Container,
   Flex,
-  GridItem,
   Heading,
   HStack,
   Icon,
-  Link,
+  Image,
   SimpleGrid,
   Stack,
-  Stat,
   Text,
-  VisuallyHidden,
+  VStack,
 } from "@chakra-ui/react";
 import {
-  LuBookOpen,
-  LuExternalLink,
-  LuLayoutGrid,
+  LuBrain,
+  LuTrendingUp,
+  LuFileText,
+  LuTarget,
+  LuArrowRight,
   LuSparkles,
-  LuToggleLeft,
 } from "react-icons/lu";
 import { Link as RouterLink } from "react-router";
 
-const resources = [
+const features = [
   {
-    href: "https://chakra-ui.com/docs/getting-started",
-    label: "Chakra UI Docs",
-    icon: LuBookOpen,
+    icon: LuBrain,
+    title: "AI-Powered Insights",
+    description:
+      "Our AI analyzes real-world job trends from millions of postings to identify which skills are in demand and which will be valuable in the future.",
   },
   {
-    href: "https://reactrouter.com/docs",
-    label: "React Router Docs",
-    icon: LuExternalLink,
+    icon: LuTrendingUp,
+    title: "Skill Gap Analysis",
+    description:
+      "Discover exactly where you stand. SkillSync identifies gaps between your current skills and what employers are looking for, helping you focus on what matters.",
+  },
+  {
+    icon: LuFileText,
+    title: "Resume Optimization",
+    description:
+      "AI-powered resume optimization ensures you're not only learning the right skills but also presenting them effectively to land your dream job.",
+  },
+  {
+    icon: LuTarget,
+    title: "Personalized Learning Paths",
+    description:
+      "Get customized recommendations for courses, certifications, and projects that align with your career goals and current skill level.",
   },
 ];
 
-const features = [
+const benefits = [
   {
     icon: LuSparkles,
-    title: "Chakra UI styling",
+    title: "Data-Driven Career Decisions",
     description:
-      "Provider, color modes, toasts, and tooltips are wired up and ready to use.",
+      "No more guessing your next career move. Get insights backed by real job market data.",
   },
   {
-    icon: LuLayoutGrid,
-    title: "Route-first scaffolding",
+    icon: LuTarget,
+    title: "Stay Ahead of the Curve",
     description:
-      "React Router v7 file-based routing keeps your screens organized and fast.",
+      "Know which skills will be in demand before they become mainstream.",
   },
   {
-    icon: LuToggleLeft,
-    title: "Light & dark ready",
+    icon: LuTrendingUp,
+    title: "Higher Job Match Rate",
     description:
-      "Toggle color mode at any time; components adapt using semantic tokens.",
+      "Optimized resumes and targeted skill development lead to better job matches.",
   },
 ];
 
 export function Welcome() {
   const pageBg = useColorModeValue(
-    "linear(to-b, gray.50, white)",
+    "linear(to-b, blue.50, white)",
     "linear(to-b, gray.900, gray.950)",
   );
 
-  const handleToast = () => {
-    toaster.create({
-      type: "success",
-      title: "Chakra UI is live",
-      description: "Try the color mode toggle or open a toast anywhere.",
-    });
-  };
-
   return (
-    <Box bgGradient={pageBg} minH="100vh" py={{ base: "12", md: "16" }}>
-      <Container maxW="6xl">
-        <Flex
-          justify="space-between"
-          align={{ base: "flex-start", md: "center" }}
-          gap={{ base: "6", md: "4" }}
-          mb={{ base: "10", md: "12" }}
-        >
-          <Stack gap="3">
-            <Badge
-              alignSelf="flex-start"
-              colorScheme="blue"
-              variant="subtle"
-              borderRadius="full"
-              px="3"
-              py="1"
-            >
-              Chakra UI integrated
-            </Badge>
-            <Stack gap="4">
-              <Heading size={{ base: "xl", md: "2xl" }} lineHeight="1.1">
-                Your React Router app is now styled with Chakra UI
+    <Box bgGradient={pageBg} minH="100vh">
+      {/* Hero Section */}
+      <Box
+        bgGradient="linear(to-r, blue.600, blue.400)"
+        color="white"
+        py={{ base: "16", md: "24" }}
+        position="relative"
+        overflow="hidden"
+      >
+        <Box
+          position="absolute"
+          top="0"
+          left="0"
+          right="0"
+          bottom="0"
+          opacity="0.1"
+          bgImage="radial-gradient(circle at 20% 50%, white 0%, transparent 50%)"
+        />
+        <Container maxW="7xl" position="relative" zIndex="1">
+          <VStack gap="8" textAlign="center" maxW="4xl" mx="auto">
+            <HStack gap="4" justify="center" mb="4">
+              <Image
+                src="/images/logo.png"
+                alt="SkillSync Logo"
+                height="64px"
+              />
+              <Heading size="2xl" fontWeight="bold">
+                SkillSync
               </Heading>
-              <Text color="fg.muted" fontSize="lg" maxW="3xl">
-                Build pages with composable, theme-aware components. Color mode,
-                toasts, and layout primitives are ready so you can focus on your
-                product, not CSS resets.
-              </Text>
-            </Stack>
-            <HStack gap="3" wrap="wrap">
-              <Button colorScheme="blue" asChild>
-                <Link
-                  href="https://chakra-ui.com/docs/getting-started"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Read the docs
-                </Link>
-              </Button>
-              <Button variant="solid" colorScheme="green" asChild>
-                <RouterLink to="/auth/login">Go to login</RouterLink>
-              </Button>
-              <Button variant="outline" onClick={handleToast}>
-                Trigger a toast
-              </Button>
             </HStack>
-          </Stack>
-        </Flex>
-
-        <SimpleGrid columns={{ base: 1, md: 3 }} gap="6">
-          {features.map((feature) => (
-            <Card.Root key={feature.title} height="full">
-              <Card.Header>
-                <HStack gap="3">
-                  <Icon
-                    as={feature.icon}
-                    boxSize="6"
-                    color="blue.400"
-                    bg={useColorModeValue("blue.50", "blue.900")}
-                    borderRadius="full"
-                    p="1.5"
-                  />
-                  <Heading size="md">{feature.title}</Heading>
-                </HStack>
-              </Card.Header>
-              <Card.Body pt="0">
-                <Text color="fg.muted">{feature.description}</Text>
-              </Card.Body>
-            </Card.Root>
-          ))}
-        </SimpleGrid>
-
-        <Card.Root mt="10">
-          <Card.Header pb="2">
-            <Heading size="md">Project quick links</Heading>
-            <Text color="fg.muted">
-              Useful references while you start building.
+            <Heading
+              size={{ base: "2xl", md: "3xl" }}
+              lineHeight="1.2"
+              fontWeight="bold"
+            >
+              Navigate the Job Market with Confidence
+            </Heading>
+            <Text fontSize={{ base: "lg", md: "xl" }} maxW="3xl" opacity="0.95">
+              AI-driven career guidance platform that analyzes real-world job
+              trends, identifies skill gaps, and recommends personalized learning
+              paths to ensure you're always career-ready.
             </Text>
-          </Card.Header>
-          <Card.Body pt="0">
-            <SimpleGrid columns={{ base: 1, md: 3 }} gap="6">
-              <GridItem>
-                <Stat.Root>
-                  <Stat.Label>Entry route</Stat.Label>
-                  <Stat.ValueText fontSize="lg">
-                    <Code>app/routes/home.tsx</Code>
-                  </Stat.ValueText>
-                </Stat.Root>
-                <Text color="fg.muted" mt="2">
-                  Replace this welcome screen with your first page.
-                </Text>
-              </GridItem>
-              <GridItem>
-                <Stat.Root>
-                  <Stat.Label>Provider stack</Stat.Label>
-                  <Stat.ValueText fontSize="lg">
-                    <Code>app/components/ui/provider.tsx</Code>
-                  </Stat.ValueText>
-                </Stat.Root>
-                <Text color="fg.muted" mt="2">
-                  ChakraProvider + next-themes wrapped at the root.
-                </Text>
-              </GridItem>
-              <GridItem>
-                <Stat.Root>
-                  <Stat.Label>Routes config</Stat.Label>
-                  <Stat.ValueText fontSize="lg">
-                    <Code>app/routes.ts</Code>
-                  </Stat.ValueText>
-                </Stat.Root>
-                <Text color="fg.muted" mt="2">
-                  Add new pages and layouts with file-based routing.
-                </Text>
-              </GridItem>
-            </SimpleGrid>
-            <Box borderTopWidth="1px" my="6" />
-            <HStack gap="4" wrap="wrap">
-              {resources.map((resource) => (
-                <Button key={resource.href} variant="ghost" asChild>
-                  <Link
-                    href={resource.href}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <HStack gap="2">
-                      <Icon as={resource.icon} />
-                      <VisuallyHidden>Open {resource.label}</VisuallyHidden>
-                      <Text>{resource.label}</Text>
-                    </HStack>
-                  </Link>
-                </Button>
-              ))}
+            <HStack gap="4" mt="4" wrap="wrap" justify="center">
+              <Button
+                size="lg"
+                colorScheme="white"
+                variant="solid"
+                bg="white"
+                color="blue.600"
+                asChild
+                _hover={{ bg: "gray.50", transform: "translateY(-2px)" }}
+                transition="all 0.2s"
+              >
+                <RouterLink to="/auth/register">Get Started Free</RouterLink>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                borderColor="white"
+                color="white"
+                asChild
+                _hover={{ bg: "whiteAlpha.200", transform: "translateY(-2px)" }}
+                transition="all 0.2s"
+              >
+                <RouterLink to="/auth/login">Sign In</RouterLink>
+              </Button>
             </HStack>
+          </VStack>
+        </Container>
+      </Box>
+
+      <Container maxW="7xl" py={{ base: "12", md: "20" }}>
+        {/* Problem Statement */}
+        <Card.Root mb="16" bg="blue.50" borderColor="blue.200">
+          <Card.Body p={{ base: "6", md: "8" }}>
+            <VStack gap="4" textAlign="center" maxW="4xl" mx="auto">
+              <Badge colorScheme="blue" fontSize="sm" px="3" py="1">
+                The Challenge
+              </Badge>
+              <Heading size="lg" color="blue.900">
+                One of the biggest challenges in job hunting is knowing what
+                employers are actually looking for.
+              </Heading>
+              <Text fontSize="lg" color="blue.800" maxW="3xl">
+                SkillSync bridges this gap by collecting data from real job
+                postings and industry insights. Our AI models continuously analyze
+                hiring trends, ensuring you know which skills will be in demand in
+                the future.
+              </Text>
+            </VStack>
+          </Card.Body>
+        </Card.Root>
+
+        {/* Key Features */}
+        <VStack gap="12" mb="16">
+          <VStack gap="4" textAlign="center" maxW="3xl" mx="auto">
+            <Badge colorScheme="blue" fontSize="sm" px="3" py="1">
+              Why SkillSync?
+            </Badge>
+            <Heading size={{ base: "xl", md: "2xl" }}>
+              Everything You Need to Stay Career-Ready
+            </Heading>
+            <Text fontSize="lg" color="fg.muted">
+              We don't just recommend skills - we help you present them
+              effectively and land the jobs that match your strengths.
+            </Text>
+          </VStack>
+
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap="8" w="100%">
+            {features.map((feature) => (
+              <Card.Root
+                key={feature.title}
+                height="full"
+                _hover={{ shadow: "xl", transform: "translateY(-4px)" }}
+                transition="all 0.3s"
+                borderWidth="1px"
+                borderColor="gray.100"
+              >
+                <Card.Body p="6">
+                  <Stack gap="4">
+                    <HStack gap="3">
+                      <Box
+                        bg="blue.100"
+                        p="3"
+                        borderRadius="lg"
+                        color="blue.600"
+                      >
+                        <Icon as={feature.icon} boxSize="6" />
+                      </Box>
+                      <Heading size="md">{feature.title}</Heading>
+                    </HStack>
+                    <Text color="fg.muted" lineHeight="tall">
+                      {feature.description}
+                    </Text>
+                  </Stack>
+                </Card.Body>
+              </Card.Root>
+            ))}
+          </SimpleGrid>
+        </VStack>
+
+        {/* Benefits Section */}
+        <Box
+          bg="blue.600"
+          borderRadius="2xl"
+          p={{ base: "8", md: "12" }}
+          color="white"
+          mb="16"
+        >
+          <VStack gap="8">
+            <VStack gap="4" textAlign="center" maxW="3xl" mx="auto">
+              <Heading size={{ base: "xl", md: "2xl" }}>
+                With SkillSync, you don't have to guess your next career move
+              </Heading>
+              <Text fontSize="lg" opacity="0.9">
+                You'll have data-driven insights guiding you toward the right
+                opportunities.
+              </Text>
+            </VStack>
+
+            <SimpleGrid columns={{ base: 1, md: 3 }} gap="6" w="100%">
+              {benefits.map((benefit) => (
+                <VStack
+                  key={benefit.title}
+                  gap="3"
+                  textAlign="center"
+                  p="6"
+                  bg="whiteAlpha.100"
+                  borderRadius="xl"
+                  _hover={{ bg: "whiteAlpha.200" }}
+                  transition="all 0.2s"
+                >
+                  <Box
+                    bg="whiteAlpha.200"
+                    p="4"
+                    borderRadius="full"
+                    color="white"
+                  >
+                    <Icon as={benefit.icon} boxSize="8" />
+                  </Box>
+                  <Heading size="md">{benefit.title}</Heading>
+                  <Text fontSize="sm" opacity="0.9">
+                    {benefit.description}
+                  </Text>
+                </VStack>
+              ))}
+            </SimpleGrid>
+          </VStack>
+        </Box>
+
+        {/* CTA Section */}
+        <Card.Root bgGradient="linear(to-r, blue.50, blue.100)" borderWidth="0">
+          <Card.Body p={{ base: "8", md: "12" }}>
+            <VStack gap="6" textAlign="center" maxW="2xl" mx="auto">
+              <Heading size={{ base: "xl", md: "2xl" }}>
+                Ready to Transform Your Career?
+              </Heading>
+              <Text fontSize="lg" color="fg.muted">
+                Join SkillSync today and take control of your professional
+                development with AI-powered insights.
+              </Text>
+              <HStack gap="4" mt="4" justify="center" wrap="wrap">
+                <Button
+                  size="lg"
+                  colorScheme="blue"
+                  asChild
+                  _hover={{ transform: "translateY(-2px)", shadow: "lg" }}
+                  transition="all 0.2s"
+                >
+                  <RouterLink to="/auth/register">
+                    <HStack gap="2">
+                      <Text>Start Your Journey</Text>
+                      <Icon as={LuArrowRight} />
+                    </HStack>
+                  </RouterLink>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  colorScheme="blue"
+                  asChild
+                  _hover={{ transform: "translateY(-2px)" }}
+                  transition="all 0.2s"
+                >
+                  <RouterLink to="/auth/login">Sign In</RouterLink>
+                </Button>
+              </HStack>
+            </VStack>
           </Card.Body>
         </Card.Root>
       </Container>

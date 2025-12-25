@@ -3,8 +3,8 @@ import { Welcome } from "../welcome/welcome";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "SkillSync - AI-Driven Career Guidance Platform" },
+    { name: "description", content: "Navigate the job market with confidence. SkillSync analyzes real-world job trends, identifies skill gaps, and recommends personalized learning paths." },
   ];
 }
 

@@ -1,12 +1,30 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+:root {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  color-scheme: light;
+  
+  /* SkillSync Brand Colors - Override Chakra UI blue colors */
+  --chakra-colors-blue-50: #e6f4f8;
+  --chakra-colors-blue-100: #b3dfe9;
+  --chakra-colors-blue-200: #80c9da;
+  --chakra-colors-blue-300: #4db3cb;
+  --chakra-colors-blue-400: #1a9dbc;
+  --chakra-colors-blue-500: #17a3bc;
+  --chakra-colors-blue-600: #13829c;
+  --chakra-colors-blue-700: #0f617c;
+  --chakra-colors-blue-800: #0b405c;
+  --chakra-colors-blue-900: #071f3c;
+  
+  /* SkillSync Secondary Colors */
+  --skillsync-primary: #17a3bc;
+  --skillsync-secondary: #04449e;
 }
 
 html,
 body {
   @apply bg-white;
-  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
